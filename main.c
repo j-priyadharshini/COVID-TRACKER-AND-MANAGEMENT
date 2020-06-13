@@ -421,10 +421,15 @@ void end()
 void g_menu()
 {
     system("cls");
-    printf("\n\t\t\t\t\t\t\t  COVID-19\n");
-    printf("\t\t\t\t\t\t  ************************\n\n\n");
-    printf("\nPress the number corresponding to your choice_\n\n1.View the record of all covid patients.\n2.Patients list in an area\n3.Update the list if the person is safe or dead \n4.Add affected person details\n5.Analysis record\n6.Exit\n");
+    printf("\n\t\t\t\t\t  **************************************\n");
+    printf("\t\t\t\t\t  * ALL INDIA CORONA MONITORING SYSTEM *\n");
+    printf("\t\t\t\t\t  *                                    *\n");
+    //printf("\t\t\t\t\t\t\t  COVID-19\n");
+    printf("\t\t\t\t\t  **************************************\n");
+    printf("\n\tPress the number corresponding to your choice_\n\n\t1.View the record of all covid patients.\n\t2.Patients list in an area\n\t3.Update the list if the person is safe or dead \n\t4.Add affected person details\n\t5.Analysis record\n\t6.Exit\n\t");
     int n;
+   printf("\n\n\n\n\n\n\n\n<<------Enter 0 to go back");
+    gotoxy(8,17);
     scanf("%i",&n);
     if (n==1)
     {
@@ -459,13 +464,13 @@ void g_menu()
     }
     getch();
 }
-
+//Login fails when password given is wrong for more than 3 times.
 void login()
 {
     system("cls");
     printf("\n\t\t\t\t\t\t\t  COVID-19\n");
     printf("\t\t\t\t\t\t  ************************\n\n");
-    int e=0	;
+    int times=0	;
     char Username[15];
     char Password[15];
     char original_Username[25]="GOVERNMENT";
@@ -473,28 +478,28 @@ void login()
 
     do
     {
-        printf("\nEnter your Username and Password");
-        printf("\nUSERNAME:");
+        printf("\n\n\tEnter your Username and Password");
+        printf("\n\tUSERNAME:");
         scanf("%s",Username);
-        printf("\nPASSWORD:");
+        printf("\n\tPASSWORD:");
         scanf("%s",Password);
         if (strcmp(Username,original_Username)==0 && strcmp(Password,original_Password)==0)
         {
-            printf("\nLogin Successfull...\npress any key to continue");
+            printf("\n\n\tLogin Successfull...\n\n\tpress any key to continue");
             getch();
             g_menu();
             break;
         }
         else
         {
-            printf("\nPassword in incorrect,Try Again ");
-            e++;
+            printf("\n\tPassword in incorrect,Try Again ");
+            times++;
             getch();
         }
-    }while(e<=2);
-    if(e>2)
+    }while(times<=2);
+    if(times>2)
     {
-    printf("\nYou have crossed the limit. You cannot login");
+    printf("\n\tYou have crossed the limit. You cannot login");
     getch();
     end();
     }
@@ -510,11 +515,17 @@ void g_check()
 
 void c_menu()
 {
-    system("cls");int cured,dead,aff;
-    printf("\n\t\t\t\t\t\t\t  COVID-19\n");
-    printf("\t\t\t\t\t\t  ************************\n");
-    printf("\nPress the number corresponding to your choice_\n\n1.Self assessment\n2.Number of affected people nearby\n3.Testing centers list\n4.Analysis record\n5.Exit\n");
+    system("cls");
+    int cured,dead,aff;
+    printf("\n\t\t\t\t\t  **************************************\n");
+    printf("\t\t\t\t\t  * ALL INDIA CORONA MONITORING SYSTEM *\n");
+    printf("\t\t\t\t\t  *                                    *\n");
+    //printf("\t\t\t\t\t\t\t  COVID-19\n");
+    printf("\t\t\t\t\t  **************************************\n");
+    printf("\n\tPress the number corresponding to your choice_\n\n\t1.Self assessment\n\t2.Number of affected people nearby\n\t3.Testing centers list\n\t4.Analysis record\n\t5.Exit\n\n\t");
     int n;
+    printf("\n\n\n\n\n\n\n\n<<------Enter 0 to go back");
+    gotoxy(8,14);
     scanf("%i",&n);
     if (n==1)
     {
@@ -547,10 +558,13 @@ void c_menu()
 void system_switcher()
 {
     system("cls");
-    printf("\n\t\t\t\t\t\t\t  COVID-19\n");
-    printf("\t\t\t\t\t\t  ************************\n");
+   printf("\n\t\t\t\t\t  **************************************\n");
+    printf("\t\t\t\t\t  * ALL INDIA CORONA MONITORING SYSTEM *\n");
+    printf("\t\t\t\t\t  *                                    *\n");
+    //printf("\t\t\t\t\t\t\t  COVID-19\n");
+    printf("\t\t\t\t\t  **************************************\n\n");
     int n;
-    printf("\nPress the number corresponding to your choice_\n\n1.Government officials\n2.Citizens\n");
+    printf("\n\tPress the number corresponding to your choice : \n\n\t1.Government officials\n\t2.Citizens\n\n\t");
     scanf("%i",&n);
     if(n==1)
     {
@@ -569,7 +583,7 @@ void system_switcher()
 
 void open_screen()
 {
-    printf("\n\t\t\t\t\t\t\t  COVID-19\n");
+    printf("\n\n\t\t\t\t\t\t\t  COVID-19\n");
     printf("\t\t\t\t\t\t  ************************\n\n\n");
     printf("\t\t\t\t\t    ALL INDIA CORONA MONITORING SYSTEM\n\n\n");
     printf("\t\t\t\t\t\t  ************************\n\n\n");
@@ -584,3 +598,4 @@ int main()
     system_switcher();
     return 0;
 }
+
