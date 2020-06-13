@@ -50,9 +50,9 @@ void edit()
     printf("\n\t\t\t\t\t\t\t  COVID-19\n");
     printf("\t\t\t\t\t\t  ************************\n\n\n");
     char f_name[20],l_name[20];
-	int found=0;
+	int found=0,check;
     FILE *ek, *ft,*analyze,*temp;
-    int dead,cured,aff;
+    int dead,cured,aff,young,adult,aged;
 	ft=fopen("temp_file2.dat","w+");
 	ek=fopen("Record2.dat","r");
 	printf("\n Enter name to delete");
@@ -72,6 +72,7 @@ void edit()
         }
         else
         {
+            check=p.age;
             found=1;
         }
     }
@@ -88,7 +89,7 @@ void edit()
         scanf("%d",&flag);
         analyze=fopen("cases.dat","r");
         temp=fopen("temp_file.dat","w+");
-        fscanf(analyze,"%d %d %d",&cured,&aff,&dead);
+        fscanf(analyze,"%d %d %d %d %d %d",&cured,&aff,&dead,&young,&adult,&aged);
 	if(flag)
     {
         cured++;
@@ -96,7 +97,19 @@ void edit()
     else{
         dead++;
     }aff--;
-    fprintf(temp,"%d %d %d",cured,aff,dead);
+    if(check<=20)
+    {
+        young--;
+    }
+    else if(check>20 && check <=60)
+    {
+        adult--;
+    }
+    else
+    {
+        aged--;
+    }
+    fprintf(temp,"%d %d %d %d %d %d",cured,aff,dead,young,adult,aged);
     fclose(temp);
     fclose(analyze);
     remove("cases.dat");
@@ -194,13 +207,14 @@ void search()
 void analysis()
 {
     system("cls");
-    int cured,aff,dead;
+    int cured,aff,dead,young,adult,aged;
     printf("\n\t\t\t\t\t\t\t  COVID-19\n");
     printf("\t\t\t\t\t\t  ************************\n");
     FILE *analyze;
     analyze=fopen("cases.dat","r");
-    fscanf(analyze,"%d %d %d",&cured,&aff,&dead);
+    fscanf(analyze,"%d %d %d %d %d %d",&cured,&aff,&dead,&young,&adult,&aged);
     printf("Number of people cured: %d\nNumber of people affected: %d\nNumber of people dead: %d\n",cured,aff,dead);
+    printf("\nNumber of people of age less than 20: %d\nNumber of people between age 20 - 60: %d\nNumber of people of age above 60: %d\n",young,adult,aged);
     fclose(analyze);
     getch();
 }
@@ -212,16 +226,11 @@ void read_data()
     printf("Enter the details\n");
     printf("*****************\n");
     FILE *ek,*analyze,*temp;
-    int dead,cured,aff;
+    int dead,cured,aff,young,adult,aged;
     analyze=fopen("cases.dat","r");
     temp=fopen("temp_file.dat","w+");
-    fscanf(analyze,"%d %d %d",&cured,&aff,&dead);
+    fscanf(analyze,"%d %d %d %d %d %d",&cured,&aff,&dead,&young,&adult,&aged);
     aff++;
-    fprintf(temp,"%d %d %d",cured,aff,dead);
-    fclose(temp);
-    fclose(analyze);
-    remove("cases.dat");
-    rename("temp_file.dat","cases.dat");
     ek=fopen("Record2.dat","a");
     do{
     printf("First Name:\n");
@@ -279,6 +288,23 @@ void read_data()
         flag=0;}while(flag);
     printf("\nAge:");
     scanf(" %i",&p.age);
+    if(p.age>0 && p.age<=20)
+    {
+        young++;
+    }
+    else if(p.age>20 && p.age<=60)
+    {
+        adult++;
+    }
+    else
+    {
+        aged++;
+    }
+    fprintf(temp,"%d %d %d %d %d %d",cured,aff,dead,young,adult,aged);
+    fclose(temp);
+    fclose(analyze);
+    remove("cases.dat");
+    rename("temp_file.dat","cases.dat");
     do{
     printf("\nAddress (without space):\n");
     scanf("%s",p.ad.Address);
@@ -598,4 +624,3 @@ int main()
     system_switcher();
     return 0;
 }
-
