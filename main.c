@@ -1,10 +1,12 @@
 //COVID-19 MANAGEMENT
+//Header files.
 #include <stdio.h>
 #include <conio.h>
 #include <windows.h>
 #include <string.h>
 #include <ctype.h>
 
+//Function prototypes.
 void edit();
 void nearby();
 void search();
@@ -24,6 +26,7 @@ void open_screen();
 char ans=0;
 int ok,valid=0;
 
+//Declaring Variables.
 struct patient
 {
 	int age;
@@ -38,12 +41,14 @@ struct patient
 	}ad;
 }p,temp_c;
 
+//To set cursor in a particular position.
 void gotoxy(short x,short y)
 {
     COORD pos ={x,y};
     SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), pos);
 }
 
+//To edit a patient's details.
 void edit()
 {
     system("cls");
@@ -126,6 +131,7 @@ void edit()
 
 }
 
+//To display the number of persons in  a particular area.
 void nearby()
 {
     system("cls");
@@ -152,6 +158,7 @@ void nearby()
         c_menu();
 }
 
+//To display  the patients details in a particular area.
 void search()
 {
         system("cls");
@@ -204,6 +211,7 @@ void search()
         g_menu();
 }
 
+//An overview analysis of the current status.
 void analysis()
 {
     system("cls");
@@ -218,6 +226,8 @@ void analysis()
     fclose(analyze);
     getch();
 }
+
+//To get required data of an affected person.
 void read_data()
 {
     system("cls");int flag=0;
@@ -325,7 +335,7 @@ void read_data()
     fclose(ek);
 }
 
-
+//To display the entire data of all patients.
 void view()
 {
         system("cls");
@@ -373,6 +383,7 @@ void view()
         g_menu();
 }
 
+//Displays all the testing centres in India.
 void testing_center()
 {
     system("cls");
@@ -393,6 +404,7 @@ void testing_center()
     c_menu();
 }
 
+//Allows the citizens to self-assess by answering few questions.
 void self_asses()
 {
     system("cls");
@@ -435,6 +447,8 @@ void self_asses()
         c_menu();
     }
 }
+
+//Displays the last page.
 void end()
 {
     system("cls");
@@ -444,6 +458,7 @@ void end()
     getch();
 }
 
+//Allows government authority to view the required information..
 void g_menu()
 {
     system("cls");
@@ -531,6 +546,7 @@ void login()
     }
 }
 
+//Goes to login menu.
 void g_check()
 {
     system("cls");
@@ -539,6 +555,7 @@ void g_check()
     login();
 }
 
+//Allows government authority to view the required information..
 void c_menu()
 {
     system("cls");
@@ -581,6 +598,7 @@ void c_menu()
     getch();
 }
 
+//Asks to choose between govt or citizen llogin.
 void system_switcher()
 {
     system("cls");
@@ -607,6 +625,7 @@ void system_switcher()
     getch();
 }
 
+//Displays first page.
 void open_screen()
 {
     printf("\n\n\t\t\t\t\t\t\t  COVID-19\n");
@@ -618,6 +637,7 @@ void open_screen()
     system("cls");
 }
 
+//Executes first.
 int main()
 {
     open_screen();
